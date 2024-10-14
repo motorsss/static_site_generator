@@ -1,30 +1,28 @@
 import unittest
-from htmlnode import HTMLNode
+from htmlnode import LeafNode
 
 
-class TestHTMLNode(unittest.TestCase):
+class TestLeafNode(unittest.TestCase):
     def test_props(self):
-        node = HTMLNode(
+        node = LeafNode(
             "h1",
             "test value",
-            None,
             {"class": "nuts", "href": "https://deez.pistachios"}
         )
         self.assertEqual(node.props_to_html(),
                          ' class="nuts" href="https://deez.pistachios"')
 
     def test_attr(self):
-        node = HTMLNode("p", "test paragraph")
+        node = LeafNode("p", "test paragraph")
         self.assertEqual(node.tag, "p")
         self.assertEqual(node.value, "test paragraph")
-        self.assertEqual(node.children, None)
         self.assertEqual(node.props, None)
 
     def test_repr(self):
-        node = HTMLNode('div', 'what is div?', None, {'src': 'ligma.jpg'})
+        node = LeafNode('div', 'what is div?', {'src': 'ligma.jpg'})
 
         self.assertEqual(node.__repr__(),
-                         "HTMLNode(div, what is div?, children: None, {'src': 'ligma.jpg'})"
+                         "LeafNode(div, what is div?, {'src': 'ligma.jpg'})"
                          )
 
 
